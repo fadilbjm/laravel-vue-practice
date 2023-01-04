@@ -1,0 +1,46 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('drug_types', function (Blueprint $table) {
+            $table->id();
+            $table->string('nama');
+            $table->timestamps();
+        });
+
+        DB::table('drug_types')->insert([
+            'nama' => 'Obat Bebas'
+        ],[
+            'nama' => 'Obat Bebas Terbatas'
+        ],[
+            'nama' => 'Obat Terlarang'
+        ],[
+            'nama' => 'Obat Tradisional'
+        ],[
+            'nama' => 'Obat Narkotika'
+        ]
+            );
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('drug_types');
+    }
+};
